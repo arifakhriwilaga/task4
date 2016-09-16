@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\OfficerRequest;
 use App\Http\Requests;
 use App\Officer;
+use Session;
 
 class OfficersController extends Controller
 {
@@ -36,19 +37,24 @@ class OfficersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfficerRequest $request)
     {
+
         $officers = Officer::create([
             'name' => $request->input_name,
             'address' => $request->input_address
             ]);
+
+        // alternative code save 
         // $add = new Officer();
         // $add->name = $request->input_name;
         // $add->address = $request->input_address;
         // $add->save();
 
-        return redirect('officer-index');
-    }
+
+            Session::flash('message','Officer '.$request->input_name.' success to add');
+            return redirect('officer-index');
+        }
 
     /**
      * Display the specified resource.
@@ -88,6 +94,7 @@ class OfficersController extends Controller
         $officers->address = $request->address;
         $officers->save();
         // $officers->update($request->all());
+        Session::flash('message','Officer '.$request->name.' success to update');
         return redirect('officer-index');
     }
 
@@ -101,6 +108,7 @@ class OfficersController extends Controller
     {
         $officers = Officer::find($id);
         $officers->delete();
+        Session::flash('message','Officer '.$officers->name.' success to delete');
         return redirect('officer-index');
     }
 }
