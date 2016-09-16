@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Requests;
+use App\Http\Requests\Request;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class Officer extends FormRequest
+class OfficerRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +11,7 @@ class Officer extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +22,15 @@ class Officer extends FormRequest
     public function rules()
     {
         return [
-            //
+            'input_name' => 'required|max:50|min:2|type:string',
+            'input_address' => 'required|max:50|min:2|string'
+        ];
+    }
+
+    public function message()
+    {
+        return [
+
         ];
     }
 }
