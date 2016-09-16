@@ -3,11 +3,24 @@
 @section('content')
 <br>
 <div class="col s6">
+<div class="panel panel-default">
+    <div class="panel-body">
   <a class="btn-floating cyan" href="officer-create">
     <i class="material-icons right">add</i>
   </a>
   <br>
-  <p>
+  <p></p>
+
+  <!--  flash message -->
+<!--     @if(Session::has('error'))
+      <div class="session-flash alert-danger">
+          {{Session::get('error')}}
+      </div>
+    @endif -->
+    @if(Session::has('message'))
+    <span>{{Session::get('message')}}</span>
+    @endif
+    
   <table class="striped">
     <tr>
     	<th>ID</th>
@@ -34,6 +47,8 @@
     </tr>
     @endforeach
   </table>
+  </div>
+  </div>
 </div>
 @stop
 
