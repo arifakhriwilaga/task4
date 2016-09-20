@@ -12,7 +12,7 @@
 {!! Form::open(['route' => 'sign_up_store']) !!}
 
 <!-- Input name -->
-{!! Form::text('input_name',' Username') !!}
+{!! Form::text('input_name',' username') !!}
 {!! $errors->first('input_name') !!}
 
 <br>

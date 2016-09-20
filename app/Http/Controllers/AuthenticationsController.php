@@ -30,7 +30,17 @@ class AuthenticationsController extends Controller
      */
     public function sign_up_store()
     {
-        //
+        $users = Authentication::create([
+        'username' => $request->input_username,
+        'email' => $request->input_email
+        'password' => $request->input_password
+        
+
+        ]);
+
+
+        Session::flash('message',$request->input_name.' success to register');
+        return redirect('authentication.login');
     }
 
     /**
