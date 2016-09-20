@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/','OfficersController@index');
+Route::get('/','AuthenticationsController@sign_up');
