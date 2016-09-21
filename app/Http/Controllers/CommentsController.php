@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Comment;
+use App\Article;
+
+use Session;
+
 class CommentsController extends Controller
 {
     /**
@@ -36,7 +41,17 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+      
+        $add = new Comment();
+        $add->article_id = $request->input_article_id;
+        $add->user_id = $request->input_user_id;
+        $add->content = $request->input_content;
+        $add->save();
+
+        Session::flash('message','your comment success to post');
+        return redirect('article-show/'.$request->input_article_id);
     }
 
     /**

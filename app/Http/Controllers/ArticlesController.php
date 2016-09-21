@@ -34,7 +34,7 @@ class ArticlesController extends Controller
     /**
     function proccess save article
      */
-    public function store(ArticleRequest $request)
+    public function store(Request $request)
     {
 
         $file = $request->file('image');
@@ -45,15 +45,15 @@ class ArticlesController extends Controller
         $image->resize(200,100);
         $image->save($image_location.'thumb'.$file->getClientOriginalName());
 
-        $add = new Officer();
-        $add->name = $request->input_name;
+        $add = new Article();
+        $add->user_id = $request->input_user_id;
         $add->title_image = $request->input_title_image;
         $add->description_image = $request->input_description_image;
         $add->image = $file->getClientOriginalName();
         
         $add->save();
 
-        Session::flash('message',$request->input_name.' your photo success to post');
+        Session::flash('message',$request->input_user_id.' your photo success to post');
         return redirect('article-index');
         }
 
@@ -102,6 +102,7 @@ class ArticlesController extends Controller
 
         }
 
+        $articles->id = $request->input_id;
         $articles->user_id = $request->input_user_id;
         $articles->title_image = $request->input_title_image;
         $articles->description_image = $request->input_description_image;
@@ -123,6 +124,6 @@ class ArticlesController extends Controller
         $delete_file = File::delete(['image_upload/'.$articles->image,'image_upload/thumb'.$articles->image, ]);
         $articles->delete();
         Session::flash('message',$articles->name.' your photo success to delete');
-        return redirect('officer-index');
+        return redirect('article-index');
     }
 }

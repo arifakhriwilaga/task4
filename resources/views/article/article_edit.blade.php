@@ -10,20 +10,23 @@
 <div class="well">
 
 <!-- Open form edit -->
-{!! Form::model($list_officer,['route'=> array('officer_	update', $list_officer->id), 'method'=>'PUT','files' => true]) !!}
-<!-- Input name -->
-{!! Form::text('input_name',$list_officer->name, array ('class' => 'form-control')) !!}
-{!! $errors->first('input_name',null) !!}
+{!! Form::model($list_article,['route'=> array('article_update', $list_article->id), 'method'=>'PUT','files' => true]) !!}
+<!-- Input id -->
+{!! Form::text('input_id',$list_article->id, array ('class' => 'form-control')) !!}
+{!! $errors->first('input_id',null) !!}
+<!-- Input user id -->
+{!! Form::text('input_user_id',$list_article->user_id, array ('class' => 'form-control')) !!}
+{!! $errors->first('input_user_id',null) !!}
 
 <!-- Input title image -->
-{!! Form::text('input_title_image',$list_officer->title_image, array ('class' => 'form-control')) !!}
+{!! Form::text('input_title_image',$list_article->title_image, array ('class' => 'form-control')) !!}
 {!! $errors->first('input_title_image',null) !!} 
 
 <!-- Input description image -->
-{!! Form::text('input_description_image',$list_officer->description_image, array ('class' => 'form-control')) !!}
+{!! Form::text('input_description_image',$list_article->description_image, array ('class' => 'form-control')) !!}
 {!! $errors->first('input_description_image',null) !!} 
-{!! Form::text('input_image',$list_officer->image, array ('class' => 'form-control')) !!}
-<img src="{{ asset('/image_upload/'.$list_officer->image) }}" width="200px" height="100px">
+{!! Form::text('input_image',$list_article->image, array ('class' => 'form-control')) !!}
+<img src="{{ asset('/image_upload/'.$list_article->image) }}" width="200px" height="100px">
 
 {!! Form::file('image') !!}
 {!! Form::submit('Save') !!}

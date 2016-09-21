@@ -7,7 +7,7 @@
 <div class="col-xs-8">
 <div class="panel panel-default">
     <div class="panel-body">
-  <a class="btn-floating cyan" href="officer-create">
+  <a class="btn-floating cyan" href="article-create">
     <i class="material-icons right">add</i>
   </a>
   <br>
@@ -27,13 +27,12 @@
     <tr>
     	<th>ID</th>
     	<th>Name</th>
-    	<th>Address</th>
       <th>Title Image</th>
       <th>Description Image</th>
       <th>Image</th>
         <th colspan="2">Action</th>
     </tr>
-    @foreach ($list_officer as $list)
+    @foreach ($list_article as $list)
     <tr>
     	<td>{{ $list->id }}</td>
     	<td>{{ $list->name }}</td>
@@ -41,13 +40,13 @@
       <td>{{ $list->description_image }}</td>
       <td><img src="{{ asset('/image_upload/thumb'.$list->image) }}" width="200px" height="100px"></td>
         <td>
-            <a class="btn-floating green" href="officer-show/{{$list->id}}">
+            <a class="btn-floating green" href="article-show/{{$list->id}}">
                 <i class="material-icons right">info_outline</i>
             </a>
-            <a class="btn-floating orange" href="officer-edit/{{$list->id}}">
+            <a class="btn-floating orange" href="article-edit/{{$list->id}}">
                 <i class="material-icons right">edit</i>
             </a>
-            <a class="btn-floating red" href="officer-delete/{{$list->id}}">
+            <a class="btn-floating red" href="article-delete/{{$list->id}}">
                 <i class="material-icons right">delete</i>
             </a>
         </td>

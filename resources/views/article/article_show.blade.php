@@ -10,16 +10,16 @@
 
  <table class="table table-striped table-hover">
     <tr>
-    	<td>Name</td><td>{{ $list_officer->name }}</td>
+    	<td>Article ID</td><td>{{ $list_article->article_id }}</td>
     </tr>
     <tr>
-    	<td>Title</td><td>{{ $list_officer->title_image }}</td>
+    	<td>Title Image</td><td>{{ $list_article->title_image }}</td>
     </tr>
     <tr>
-    <td colspan="2"><img src="{{ asset('/image_upload/'.$list_officer->image) }}" width="500px" height="300px"></td>
+    <td colspan="2"><img src="{{ asset('/image_upload/'.$list_article->image) }}" width="500px" height="300px"></td>
     </tr>
         <tr>
-    	<td>Description</td><td>{{ $list_officer->description_image }}</td>
+    	<td>Description</td><td>{{ $list_article->description_image }}</td>
     </tr>
 </table>
 </div>
@@ -32,16 +32,22 @@
   <div class="panel-body">
 	{!! Form::open(['route' => 'comment_store']) !!}
 	<div class="form-group"> 
-	 {!! Form::hidden('officer_id', $value = $list_officer->id, array('class' => 'form-control', 'readonly')) !!}
-	{!! Form::hidden('author', $value = $list_officer->name, array('class' => 'form-control', 'readonly')) !!}
+   {!! Form::text('input_user_id','User Id') !!}
+   {!! $errors->first('input_user_id') !!}
+  <!-- {!! Form::text('user_id', $value = $list_article->id, array('class' => 'form-control', 'readonly')) !!} -->
+	<!-- {!! Form::text('author', $value = $list_article->name, array('class' => 'form-control', 'readonly')) !!} -->
 	</div>
-	<!-- Input content -->
+  <div class="form-group">
+  {!! Form::text('input_article_id','Article ID') !!}
+  {!! $errors->first('input_article_id') !!}
+  </div>
+  <!-- Input content -->
+  <div class="form-group">
+  {!! Form::textarea('input_content') !!}
+  {!! $errors->first('input_content') !!}
+  </div>
 	<div class="form-group">
-	{!! Form::textarea('input_content') !!}
-	{!! $errors->first('input_content') !!}
-	</div>
-	<div class="form-group">
-	{!! Form::submit('Post!') !!}
+	{!! Form::submit('Comment!') !!}
 	{!! Form::close() !!}
 	</div>
    </div>
@@ -51,6 +57,8 @@
 </div>
 <br>
 <br>
+</div>
+<div class="row">
 <div class="col-xs-12">
 <div class="container">
 <div class="col-xs-6">
@@ -59,10 +67,10 @@
 <div class="list-group">
   <div class="list-group-item">
     <div class="row-picture">
-    	<img class="circle" src="{{ asset('/image_upload/'.$list_officer->image) }}"  alt="icon">
+    	<!-- <img class="circle" src="{{ asset('/image_upload/'.$list_article->image) }}"  alt="icon"> -->
     </div>
     <div class="row-content">
-      <h4 class="list-group-item-heading">Your Comment</h4>
+      <h4 class="list-group-item-heading">{{ $list->user_id }}</h4>
     	<p class="list-group-item-text">{{ $list->content }}</p>
     </div>
   </div>

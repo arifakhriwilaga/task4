@@ -6,17 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Authentication extends Model
 {
-	protected $table = 'users';
+	// protected $table = 'users';
 
-    protected $fillable = [
-        'username', 'email', 'password',
-    ];
+ //    protected $fillable = [
+ //        'username', 
+ //        'email',
+ //        'password',
+ //        'permissions'
+ //    ];
 
-    public function articles(){
-	return $this->hasMany('App\Article', 'user_id');
-	}
+ //    public function articles(){
+	// return $this->hasMany('App\Article', 'user_id');
+	// }
 
-	public function Comments(){
-	return $this->hasMany('App\Comment', 'user_id');
-	}
+	// public function Comments(){
+	// return $this->hasMany('App\Comment', 'user_id');
+	// }
 }

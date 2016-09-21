@@ -7,13 +7,13 @@
  <div class="col-xs-6">
   <div class="well">
   <!-- Open form -->
-  {!! Form::open(['route' => 'forgot_store']) !!}
+  
   <!-- Input email -->
   {!! Form::email('input_email','example@example.com') !!}
   {!! $errors->first('input_email') !!} 
 
   {!! Form::submit('Forgot') !!} Forgot your password?
-  {!! Form::close() !!}
+
   <!-- close -->
    </div>
  </div>

@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser as CartalystUser;
 
-class User extends Authenticatable
+class User extends CartalystsUser
 {
     use Notifiable;
 
@@ -14,9 +13,14 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'email',
+        'password',
+        'permissions',
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -27,3 +31,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 }
+// use Sentinel\Middleware\SentryAuth;
+// use Sentinel\Middleware\SentryAdminAccess;
+// use Sentinel\Middleware\SentryMember;

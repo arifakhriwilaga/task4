@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable = ['image','title_image','description_image'];
+    protected $fillable = ['user_id','image','title_image','description_image'];
 
 	public function comments(){
 	return $this->hasMany('App\Comment', 'article_id');

@@ -14,7 +14,7 @@
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/"><i class="material-icons right">view_list</i></a></li>
+                    <li><a href="article-index"><i class="material-icons right">view_list</i></a></li>
                 </ul>
             </div>
         </div>

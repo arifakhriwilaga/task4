@@ -8,18 +8,14 @@
 <div class="col-xs-4">
 <div class="well">
 <!-- Open form -->
-
-{!! Form::open(['route' => '']) !!}
-
+{!! Form::open(['route' => 'logged_in']) !!}
 <!-- Input name -->
-{!! Form::text('input_name',' Username or Email') !!}
-{!! $errors->first('input_name') !!}
-
+{!! Form::text('Email',' Your Email') !!}
+{!! $errors->first('email') !!}
 <br>
-
 <!-- Input password -->
-{!! Form::password('input_password') !!}
-{!! $errors->first('input_password') !!} 
+{!! Form::password('password') !!}
+{!! $errors->first('password') !!} 
 <br>
 {!! Form::submit('Login') !!}
 {!! Form::close() !!}

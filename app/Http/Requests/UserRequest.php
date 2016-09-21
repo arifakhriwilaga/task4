@@ -2,7 +2,7 @@
 namespace App\Http\Requests;
 use App\Http\Requests\Request;
 
-class OfficerRequest extends Request
+class UserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,9 @@ class OfficerRequest extends Request
     public function rules()
     {
         return [
-            'input_name' => 'required|max:50|min:2|string',
-            'input_address' => 'required|max:50|min:2|string'
+            // 'input_username' => 'required|max:150|min:2|string',
+            // 'input_email' => 'required',
+            // 'input_password' => 'required|max:10|min:2|string'
         ];
     }
 

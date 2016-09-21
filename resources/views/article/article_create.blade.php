@@ -10,13 +10,14 @@
 
 <div class="col-xs-6">
 <div class="well">
-{!! Form::open(['route' => 'officer_store', 'enctype' => 'multipart/form-data']) !!}
-<!-- Input name -->
-    <div class="form-group">  
-        <input class="form-control" placeholder="Your Name" type="text" name="input_name">
-    </div>
 
-{!! $errors->first('input_name',null) !!}
+{!! Form::open(['route' => 'article_store', 'enctype' => 'multipart/form-data']) !!}
+
+<!-- Input User ID -->
+    <div class="form-group">
+        <input class="form-control" placeholder="User ID" type="text" name="input_user_id">
+    </div>
+{!! $errors->first('input_user_id') !!} 
 
 <!-- Input title image -->
     <div class="form-group">

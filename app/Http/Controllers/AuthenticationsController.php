@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\UserRequest;
 use App\Http\Requests;
+use App\User;
+use App\Article;
 
-use Redirect;
+use Redirect,Sentinel,Session;
 
 class AuthenticationsController extends Controller
 {
@@ -28,19 +30,21 @@ class AuthenticationsController extends Controller
     /**
      function for save new user and return view index user page
      */
-    public function sign_up_store()
+    public function sign_up_store(UserRequest $request)
     {
-        $users = Authentication::create([
-        'username' => $request->input_username,
-        'email' => $request->input_email
-        'password' => $request->input_password
-        
+        // $users = Authentication::create([
+        // 'username' => $request->input_username,
+        // 'email' => $request->input_email,
+        // 'password' => $request->input_password
+        // ]);
+        Sentinel::registerAndActivate([
+            'email' => $request->input_email,
+            'password' => $request->input_password,
+            
+        ]);    
 
-        ]);
-
-
-        Session::flash('message',$request->input_name.' success to register');
-        return redirect('authentication.login');
+        Session::flash('message',$request->input_username.' success to register');
+        return Redirect('user/login');
     }
 
     /**
@@ -48,7 +52,7 @@ class AuthenticationsController extends Controller
      */
     public function forgot_password()
     {
-        return view('authentication.login');
+        return view('authentication.forgot_password');
     }
 
 
@@ -58,9 +62,29 @@ class AuthenticationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function logged_in($request)
     {
-        //
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        Sentinel::authenticate($credentials);  
+
+        $articles = Article::all();
+         return redirect('article-index')->with('list_article',$articles);
+
+        // $credentials = [
+        //     'email'    => $request->email,
+        //     'password' => $request->password
+        // ];
+
+        // if ($user = Sentinel::stateless($credentials)){
+        //        return view('article.article_index');
+        // }
+        // else{
+        //     echo "Error Login";
+        // }
     }
 
     /**
