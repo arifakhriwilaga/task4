@@ -62,7 +62,7 @@ class AuthenticationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logged_in($request)
+    public function logged_in(UserRequest $request)
     {
         $credentials = [
             'email' => $request->email,
@@ -93,9 +93,10 @@ class AuthenticationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function logout()
     {
-        //
+        Sentinel::logout();
+        return redirect('user/login');
     }
 
     /**
