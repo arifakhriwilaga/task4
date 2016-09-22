@@ -26,7 +26,7 @@
 {!! Form::label('email', 'Email') !!}
 {!! Form::email('input_email') !!}
 {!! $errors->first('input_email') !!} 
-
+<br>
 <!-- Input password -->
 {!! Form::label('password', 'Password') !!}
 {!! Form::password('input_password') !!}
