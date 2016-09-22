@@ -15,6 +15,8 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="article-index"><i class="material-icons right">view_list</i></a></li>
+                <li>
+                {!! link_to('user/logout', 'Logout') !!}</li>
                 </ul>
             </div>
         </div>

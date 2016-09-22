@@ -7,6 +7,7 @@ Route::get('user/forgot-password','AuthenticationsController@forgot_password')->
 
 
 Route::post('user/logged_in','AuthenticationsController@logged_in')->name('logged_in');
+Route::get('user/logout','AuthenticationsController@logout')->name('logout');
 //  Route::get('/', array('as' => 'home', function()
 // {
 //     return View::make('home');
