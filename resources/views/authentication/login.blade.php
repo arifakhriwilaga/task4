@@ -9,11 +9,13 @@
 <div class="well">
 <!-- Open form -->
 {!! Form::open(['route' => 'logged_in']) !!}
-<!-- Input name -->
-{!! Form::text('Email',' Your Email') !!}
+<!-- Input email -->
+{!! Form::label('email', 'Email') !!}
+{!! Form::text('Email','') !!}
 {!! $errors->first('email') !!}
 <br>
 <!-- Input password -->
+{!! Form::label('password', 'Password') !!}
 {!! Form::password('password') !!}
 {!! $errors->first('password') !!} 
 <br>
