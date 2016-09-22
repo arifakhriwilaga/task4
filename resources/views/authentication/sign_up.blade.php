@@ -11,16 +11,6 @@
 
 {!! Form::open(['route' => 'sign_up_store']) !!}
 
-<!-- Input username -->
-
-<!-- {!! Form::label('username', 'Username') !!}
-{!! Form::text('input_username') !!}
-{!! $errors->first('input_username') !!}  -->
-
-<!-- Input password -->
-<!-- {!! Form::label('last_name', 'Last Name') !!}
-{!! Form::text('input_last_name') !!}
-{!! $errors->first('input_last_name') !!}  -->
 <br>
 <!-- Input email -->
 {!! Form::label('email', 'Email') !!}

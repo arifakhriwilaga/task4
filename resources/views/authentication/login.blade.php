@@ -10,8 +10,10 @@
 <!-- Open form -->
 {!! Form::open(['route' => 'logged_in']) !!}
 <!-- Input email -->
+{!! Form::hidden('_token',$value = csrf_token())  !!}
+
 {!! Form::label('email', 'Email') !!}
-{!! Form::text('Email','') !!}
+{!! Form::text('email') !!}
 {!! $errors->first('email') !!}
 <br>
 <!-- Input password -->
@@ -25,6 +27,9 @@
 </div>
 </div>
 <div class="col-xs-1">
+@if(Session::has('error'))
+<span>{{Session::get('error')}}</span>
+@endif
 </div>
 </div>
 </div>
