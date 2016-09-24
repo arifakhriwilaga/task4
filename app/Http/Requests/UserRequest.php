@@ -22,15 +22,18 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            // 'input_username' => 'required|max:150|min:2|string',
-            // 'input_email' => 'required',
-            // 'input_password' => 'required|max:10|min:2|string'
+            'username' => 'required',
+            // 'email' => 'required',
+            // 'password' => 'required|max:10|min:2|'
         ];
     }
 
     public function message()
     {
         return [
+        'username.required' => 'Username kosong',
+        // 'email.require' => 'email kosong',
+        // 'password.require' => 'password kosong',
 
         ];
     }

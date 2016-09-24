@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cartalyst\Sentinel\Activations\EloquentActivation;
 use Cartalyst\Sentinel\Users\UserInterface;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use App\Http\Requests;
 use App\User;
 use App\Article;
 
-use Redirect,Sentinel,Session;
+use Redirect,Session;
 
 
 class AuthenticationsController extends Controller
@@ -24,6 +25,23 @@ class AuthenticationsController extends Controller
     {
         return view('authentication.sign_up');
     }
+
+        /**
+     return view to sign_up page or first page
+     */
+    public function index(Request $request)
+    {
+        $articles = Article::paginate(1);
+  
+        if ($request->ajax()) {
+            return view('image.content_image')->with('list_article',$articles);
+        }
+            return view('image.content_image')->with('list_article',$articles);
+    
+    // $articles = Article::all();
+    // return view('image.content_image')->with('list_article',$articles);
+    }
+
     /**
      return view to index of website
      */
@@ -38,11 +56,8 @@ class AuthenticationsController extends Controller
     public function sign_up_store(UserRequest $request)
     {
 
-        Sentinel::registerAndActivate([
-            'email' => $request->input_email,
-            'password' => $request->input_password,
-            
-        ]);    
+        Sentinel::registerAndActivate($request->all());    
+        // $request->merge(['umur' => '18', ])
       
         Session::flash('message',' success to register');
         return Redirect('user/login');
@@ -66,16 +81,21 @@ class AuthenticationsController extends Controller
     public function logged_in(Request $request)
     {
         $credentials = [
+            'username' => $request->email,
             'email'    => $request->email,
             'password' => $request->password,
         ];
 
         // $user = Sentinel::findUserById(1);
-
+        // Sentinel::check();
         if ($user = Sentinel::authenticate($credentials))
         {
             $articles = Article::all();
-            return redirect('article-index');         
+            return redirect('index')->with('user',$credentials);         
+        }
+        else{
+            Session::flash('error',' Failed login');
+            return redirect('user/login');
         }
         
     }
@@ -91,8 +111,10 @@ class AuthenticationsController extends Controller
         Sentinel::logout();
         return redirect('user/login');
     }
-    public function index()
+
+    public function search()
     {
-        return view('article-index');
+        $articles = Article::all();
+        return view('student-table')->with('results',$articles);
     }
 }

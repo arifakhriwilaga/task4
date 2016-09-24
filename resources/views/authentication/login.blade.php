@@ -10,7 +10,9 @@
 <!-- Open form -->
 {!! Form::open(['route' => 'logged_in']) !!}
 <!-- Input email -->
-{!! Form::hidden('_token',$value = csrf_token())  !!}
+{{ csrf_field() }}
+<!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+<!-- {!! Form::hidden('_token',$value = csrf_token())  !!} -->
 
 {!! Form::label('email', 'Email') !!}
 {!! Form::text('email') !!}
@@ -21,7 +23,7 @@
 {!! Form::password('password') !!}
 {!! $errors->first('password') !!} 
 <br>
-{!! Form::submit('Login') !!}
+{!! Form::submit('Login') !!} {!! link_to('user/forgot-password ', 'Forgot your password?') !!} 
 {!! Form::close() !!}
 <!-- close -->
 </div>

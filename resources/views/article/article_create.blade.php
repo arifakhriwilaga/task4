@@ -12,10 +12,10 @@
 <div class="well">
 
 {!! Form::open(['route' => 'article_store', 'enctype' => 'multipart/form-data']) !!}
-
+<h2>Post your image</h2>
 <!-- Input User ID -->
     <div class="form-group">
-        <input class="form-control" placeholder="User ID" type="text" name="input_user_id">
+        <input hidden="" name="input_user_id" value="{{ Sentinel::getUser()->id }}">
     </div>
 {!! $errors->first('input_user_id') !!} 
 

@@ -40,10 +40,7 @@ class CommentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
-
-      
+    {      
         $add = new Comment();
         $add->article_id = $request->input_article_id;
         $add->user_id = $request->input_user_id;
@@ -51,7 +48,7 @@ class CommentsController extends Controller
         $add->save();
 
         Session::flash('message','your comment success to post');
-        return redirect('article-show/'.$request->input_article_id);
+        return redirect('comment-show/'.$request->input_article_id);
     }
 
     /**
@@ -62,30 +59,13 @@ class CommentsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $articles = Article::find($id);
+        $comments = Article::find($id)->comments;
+        return view('comment.comment_show')
+        ->with('list_comment',$comments)
+        ->with('list_article',$articles);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

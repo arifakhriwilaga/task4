@@ -2,11 +2,12 @@
 
 namespace App;
 
-use Cartalyst\Sentinel\Users\EloquentUser as CartalystUser;
+use App\Http\Requests\UserRequest;
+use Cartalyst\Sentinel\Users\EloquentUser as SentinelUser;
 
-class User extends CartalystsUser
+class User extends SentinelUser
 {
-    use Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +18,12 @@ class User extends CartalystsUser
 
     protected $fillable = [
         'email',
+        'username',
         'password',
         'permissions',
     ];
+
+    protected $loginNames = ['username'];
 
 
     /**
@@ -30,7 +34,12 @@ class User extends CartalystsUser
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function comments(){
+    return $this->hasMany('App\Comment', 'user_id');
+    }
+
+    public function articles(){
+    return $this->hasMany('App\Article', 'user_id');
+    }
 }
-// use Sentinel\Middleware\SentryAuth;
-// use Sentinel\Middleware\SentryAdminAccess;
-// use Sentinel\Middleware\SentryMember;

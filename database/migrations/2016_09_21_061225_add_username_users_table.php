@@ -13,7 +13,7 @@ class AddUsernameUsersTable extends Migration
      */
     public function up()
     {
-       //
+        //
     }
 
     /**

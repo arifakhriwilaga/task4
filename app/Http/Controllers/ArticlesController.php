@@ -8,6 +8,8 @@ use App\Http\Requests\ArticleRequest;
 
 use App\Http\Requests;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+
 use App\Article;
 
 use App\Comment;   
@@ -87,7 +89,7 @@ class ArticlesController extends Controller
         $articles = Article::find($id);
         $file = $request->file('image');
         $image_location = public_path().'/image_upload/';
-        $deletefile = File::delete('image_upload/'.$articles->image);
+        $delete_file = File::delete(['image_upload/'.$articles->image,'image_upload/thumb'.$articles->image, ]);
         
         $image = Image::make($file);
         $image->resize(200,100);

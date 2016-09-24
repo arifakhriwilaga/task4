@@ -11,24 +11,30 @@
 
 {!! Form::open(['route' => 'sign_up_store']) !!}
 
+<!-- Input username -->
+{!! Form::label('username', 'Username') !!}
+{!! Form::text('username') !!}
+<br>
+<br>
+<br>
+{!! $errors->first('username') !!}
+<br>
+<br>
+<br>
 <br>
 <!-- Input email -->
 {!! Form::label('email', 'Email') !!}
-{!! Form::email('input_email') !!}
-{!! $errors->first('input_email') !!} 
+{!! Form::email('email') !!}
+{!! $errors->first('email') !!} 
 <br>
 <!-- Input password -->
 {!! Form::label('password', 'Password') !!}
-{!! Form::password('input_password') !!}
-{!! $errors->first('input_password') !!} 
+{!! Form::password('password') !!}
+{!! $errors->first('password') !!} 
 <br>
-{!! Form::submit('Sign Up') !!} {!! link_to('user/forgot-password ', 'Forgot your password?') !!} 
+{!! Form::submit('Sign Up') !!} 
 {!! Form::close() !!}
-
-<br>
-
-{!! link_to('user/login', 'Login') !!}
-<!-- close -->
+<!-- end form -->
 </div>
 </div>
 <div class="col-xs-1">

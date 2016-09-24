@@ -24,35 +24,6 @@
 </table>
 </div>
 </div>
-<div class="col-xs-6">
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Comment</h3>
-  </div>
-  <div class="panel-body">
-	{!! Form::open(['route' => 'comment_store']) !!}
-	<div class="form-group"> 
-   {!! Form::text('input_user_id','User Id') !!}
-   {!! $errors->first('input_user_id') !!}
-  <!-- {!! Form::text('user_id', $value = $list_article->id, array('class' => 'form-control', 'readonly')) !!} -->
-	<!-- {!! Form::text('author', $value = $list_article->name, array('class' => 'form-control', 'readonly')) !!} -->
-	</div>
-  <div class="form-group">
-  {!! Form::text('input_article_id','Article ID') !!}
-  {!! $errors->first('input_article_id') !!}
-  </div>
-  <!-- Input content -->
-  <div class="form-group">
-  {!! Form::textarea('input_content') !!}
-  {!! $errors->first('input_content') !!}
-  </div>
-	<div class="form-group">
-	{!! Form::submit('Comment!') !!}
-	{!! Form::close() !!}
-	</div>
-   </div>
-</div>
-</div>
 </div>
 </div>
 <br>

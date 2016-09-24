@@ -11,11 +11,11 @@ class Comment extends Model
 
      public function article() {
 
-  	 return $this->belongsTo('App\Officer', 'article_id');
+  	 return $this->belongsTo('App\Article', 'article_id');
 	}
      
-     public function Authentication() {
+     public function user() {
 
-	 return $this->belongsTo('App\Authentication', 'user_id');
+	 return $this->belongsTo('App\User', 'user_id');
 	}
 }

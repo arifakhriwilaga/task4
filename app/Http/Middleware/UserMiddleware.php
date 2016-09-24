@@ -16,10 +16,10 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($user = !Sentinel::inRole('user')) {
-            return redirect()->route('login')->with('error', 'You are a customer and cannot access to backend section');
-        }
-        return $next($request);
+        // if ($user = !Sentinel::inRole('user')) {
+        //     return redirect()->route('login')->with('error', 'You are a customer and cannot access to backend section');
+        // }
+        // return $next($request);
     }
 
 }

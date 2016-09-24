@@ -20,9 +20,9 @@ class SentinelMiddleware
       public function handle($request, Closure $next)
     {
 
-        // if (!Sentinel::check()) {
-        //     return redirect()->route('user/logged_in')->with('error', 'You are a customer and cannot access to backend section');
-        // }
-        // return $next($request);
+        if (Sentinel::check()) {
+            return view()->route('index')->with('error', 'You are a customer and cannot access to backend section');
+        }
+        return $next($request);
     }
 }

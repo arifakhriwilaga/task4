@@ -12,10 +12,10 @@
 <!-- Open form edit -->
 {!! Form::model($list_article,['route'=> array('article_update', $list_article->id), 'method'=>'PUT','files' => true]) !!}
 <!-- Input id -->
-{!! Form::text('input_id',$list_article->id, array ('class' => 'form-control')) !!}
+{!! Form::hidden('input_id',$list_article->id, array ('class' => 'form-control')) !!}
 {!! $errors->first('input_id',null) !!}
 <!-- Input user id -->
-{!! Form::text('input_user_id',$list_article->user_id, array ('class' => 'form-control')) !!}
+{!! Form::hidden('input_user_id',$list_article->user_id, array ('class' => 'form-control')) !!}
 {!! $errors->first('input_user_id',null) !!}
 
 <!-- Input title image -->
@@ -25,8 +25,8 @@
 <!-- Input description image -->
 {!! Form::text('input_description_image',$list_article->description_image, array ('class' => 'form-control')) !!}
 {!! $errors->first('input_description_image',null) !!} 
-{!! Form::text('input_image',$list_article->image, array ('class' => 'form-control')) !!}
 <img src="{{ asset('/image_upload/'.$list_article->image) }}" width="200px" height="100px">
+{!! Form::text('input_image',$list_article->image, array ('class' => 'form-control')) !!}
 
 {!! Form::file('image') !!}
 {!! Form::submit('Save') !!}

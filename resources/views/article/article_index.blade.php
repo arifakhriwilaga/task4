@@ -12,14 +12,10 @@
   </a>
   <br>
   <p></p>
-
-  <!--  flash message -->
-<!--     @if(Session::has('error'))
-      <div class="session-flash alert-danger">
-          {{Session::get('error')}}
-      </div>
-    @endif -->
-    @if(Session::has('message'))
+@if($user = Sentinel::findUserById(1))
+    <span>{{ $user->email }}</span>
+@endif
+  @if(Session::has('message'))
     <span>{{Session::get('message')}}</span>
     @endif
     
