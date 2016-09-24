@@ -12,8 +12,8 @@ class Article extends Model
 	return $this->hasMany('App\Comment', 'article_id');
 	}
 
-     public function Authentication() {
+     public function user() {
 
-	return $this->belongsTo('App\Authentication', 'user_id');
+	return $this->belongsTo('App\User', 'user_id');
 	}
 }
