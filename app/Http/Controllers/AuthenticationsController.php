@@ -38,8 +38,6 @@ class AuthenticationsController extends Controller
         }
             return view('image.content_image')->with('list_article',$articles);
     
-    // $articles = Article::all();
-    // return view('image.content_image')->with('list_article',$articles);
     }
 
     /**
@@ -117,4 +115,5 @@ class AuthenticationsController extends Controller
         $articles = Article::all();
         return view('student-table')->with('results',$articles);
     }
+
 }

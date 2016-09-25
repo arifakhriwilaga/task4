@@ -17,8 +17,18 @@
 @endif
   @if(Session::has('message'))
     <span>{{Session::get('message')}}</span>
-    @endif
-    
+  @endif
+@if($user = Sentinel::inRole('admin'))
+<div>
+<a class="btn-floating green" href="import">
+    Import
+</a>
+<br>
+<a class="btn-floating green" href="{{URL::to('export')}}">
+    Export
+</a>
+</div>
+@endif
   <table class="striped">
     <tr>
     	<th>ID</th>

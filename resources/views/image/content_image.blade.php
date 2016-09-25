@@ -2,11 +2,21 @@
 
 @section('content_image')
 @if($list_article->count())
-<div class="">Export</div>
+@if($user = Sentinel::inRole('admin'))
+<div>
+<a class="btn-floating green" href="import">
+    Import
+</a>
+<br>
+<a class="btn-floating green" href="{{ URL::to('export/xls') }}">
+    <button class="btn btn-success">Export</button>
+</a>
+</div>
+@endif
   <table class="striped">
     <tr>
-    	<th>ID</th>
-    	<th>Name</th>
+      <th>ID</th>
+      <th>Name</th>
       <th>Title Image</th>
       <th>Description Image</th>
       <th>Image</th>
@@ -14,8 +24,8 @@
     </tr>
     @foreach ($list_article as $list)
     <tr>
-    	<td>{{ $list->id }}</td>
-    	<td>{{ $list->name }}</td>
+      <td>{{ $list->id }}</td>
+      <td>{{ $list->name }}</td>
       <td>{{ $list->title_image }}</td>
       <td>{{ $list->description_image }}</td>
       <td><img src="{{ asset('/image_upload/thumb'.$list->image) }}" width="200px" height="100px"></td>
