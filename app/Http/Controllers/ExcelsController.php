@@ -29,21 +29,21 @@ class ExcelsController extends Controller
         
         $file = $request->file('import_file');
         
-        Excel::selectSheets('Sheet1')->load($file, function($reader) {
+        Excel::selectSheets('Article')->load($file, function($reader) {
             $reader->each(function($sheet){
                 Article::firstOrCreate($sheet->toArray());
             });
             
         });
 
-        Excel::selectSheets('Sheet2')->load($file, function($reader) {
+        Excel::selectSheets('Comment')->load($file, function($reader) {
             $reader->each(function($sheet){
                 Comment::firstOrCreate($sheet->toArray());
             });
             
         });
 
-        return redirect('article-index');
+        return redirect('index');
 
 
     }

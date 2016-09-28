@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Activations\EloquentActivation;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\User;
 use App\Article;
 
-use Redirect,Session,Request;
+use Redirect,Session;
 
 
 class AuthenticationsController extends Controller
@@ -33,38 +33,38 @@ class AuthenticationsController extends Controller
 
         $articles = Article::paginate(2);//->toJson();
 
-        if ($request::ajax()) {
+        // if ($request::ajax()) {
 
-            if($request->keywords) {
-            $articles = Article::where('title_image', 'like', '%'.$request->keywords.'%')
-              ->orWhere('description_image', 'like', '%'.$request->keywords.'%')
-              ->paginate(2);
-            }
+        //     if($request->keywords) {
+        //     $articles = Article::where('title_image', 'like', '%'.$request->keywords.'%')
+        //       ->orWhere('description_image', 'like', '%'.$request->keywords.'%')
+        //       ->paginate(2);
+        //     }
 
-        $view = (String)view('image.content_image')
-        ->with('list_article', $articles)
-        ->render();
-         return response()->json(['page' => $view])->render();
+        // $view = (String)view('image.content_image')
+        // ->with('list_article', $articles)
+        // ->render();
+        //  return response()->json(['page' => $view])->render();
         
-        } else {
+        // } else {
         
-        $articles = Article::paginate(2);
-        return view('index')
-        ->with('list_article', $articles);
+        // $articles = Article::paginate(2);
+        // return view('index')
+        // ->with('list_article', $articles);
         
-        }
+        // }
 
-        if($request->ajax()) {
-            $articles = Article::orderBy('id', $request->direction)->paginate(2);
-            $request->direction == 'asc' ? $direction = 'desc' : $direction = 'asc';
-            $view = (String)view('image.content_image')
-            ->with('list_article', $articles)
-            ->render();
-            return response()->json(['view' => $view, 'direction' => $direction]);
-        } else {
-            $articles = Article::orderBy('created_at', 'desc')->paginate(2);
+        // if($request->ajax()) {
+        //     $articles = Article::orderBy('id', $request->direction)->paginate(2);
+        //     $request->direction == 'asc' ? $direction = 'desc' : $direction = 'asc';
+        //     $view = (String)view('image.content_image')
+        //     ->with('list_article', $articles)
+        //     ->render();
+        //     return response()->json(['view' => $view, 'direction' => $direction]);
+        // } else {
+        //     $articles = Article::orderBy('created_at', 'desc')->paginate(2);
+        // }
             return view('index')->with('list_article', $articles);
-        }
       }
 
     /**

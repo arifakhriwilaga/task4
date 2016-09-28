@@ -1,6 +1,4 @@
-
 @if($list_article->count())
-
     <table class="table table-striped table-hover ">
       <thead>
     <tr>

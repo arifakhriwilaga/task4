@@ -37,6 +37,7 @@
         });
 
         $.material.init();
+      });
  
         function get_page(page) {
           $.ajax({
@@ -75,7 +76,6 @@
           });
         });
       
-      });
 
   </script>
 

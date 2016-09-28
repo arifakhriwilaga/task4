@@ -10,12 +10,18 @@
 
  <table class="table table-striped table-hover">
     <tr>
-    <td>
-    <a class="btn-floating orange" href="export/{{$list_article->id}}">Export 2</a>
-    <a href="{{ URL::to('export/'.$list_article->id) }}">Export</a>
+    <td colspan="2">
+    @if($user = Sentinel::inRole('admin'))
+      <div class="btn-group">
+        <a href="#" class="btn btn-default btn-raised">Excel</a>
+        <a href="#" data-target="dropdown-menu" class="btn btn-default btn-raised dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+        <li><a href="{{ URL::to('export/'.$list_article->id) }}">Export</a></li>  
+        </ul>
+      </div>
+    @endif
     </td>
     </tr>
-
     <tr>
     	<td>Article ID</td><td>{{ $list_article->id }}</td>
     </tr>

@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- menu where user logged in -->
                 @if($user = Sentinel::check())
-                <li><a href="home" class="home_link">Home</a></li>                    
+                <li>{!! link_to('home', 'Home') !!}</li>                    
             @if($user = Sentinel::inRole('admin'))
                 <li>{!! link_to('article-index', 'Article') !!}</li>
             @endif

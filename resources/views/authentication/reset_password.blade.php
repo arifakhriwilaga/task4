@@ -6,7 +6,7 @@
 
     <p>
 
-    To reset your password please follow this link : {!! link_to('change-password/'.$forgot_token, 'Change Password') !!}
+    To reset your password follow this link : {!! link_to('change-password/'.$forgot_token, 'Change Password') !!}
 
     </p>
 
