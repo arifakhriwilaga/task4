@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_login')
 
 @section('content')
 <div class="row">
@@ -10,29 +10,29 @@
 <!-- Open form -->
 
 {!! Form::open(['route' => 'sign_up_store']) !!}
-
-<!-- Input username -->
-{!! Form::label('username', 'Username') !!}
-{!! Form::text('username') !!}
-<br>
-<br>
-<br>
-{!! $errors->first('username') !!}
-<br>
-<br>
-<br>
-<br>
-<!-- Input email -->
-{!! Form::label('email', 'Email') !!}
-{!! Form::email('email') !!}
-{!! $errors->first('email') !!} 
-<br>
-<!-- Input password -->
-{!! Form::label('password', 'Password') !!}
-{!! Form::password('password') !!}
-{!! $errors->first('password') !!} 
-<br>
-{!! Form::submit('Sign Up') !!} 
+<table width="380">
+<tr><td colspan="2"><h2><center>Welcome to my blog</center></h2><br></td></tr>
+<tr><td>{!! Form::label('username', 'Username') !!}</td>
+	<td>
+		{!! Form::text('username') !!}
+		{!! $errors->first('username') !!}
+	</td>
+</tr>
+<tr><td>{!! Form::label('email', 'Email') !!}</td>
+	<td>
+		{!! Form::email('email') !!}
+		{!! $errors->first('email') !!} 
+	</td>
+</tr>
+<tr><td>{!! Form::label('password', 'Password') !!}</td>
+	<td>
+	{!! Form::password('password') !!}
+	{!! $errors->first('password') !!} 
+	</td>
+</tr>
+<tr><td colspan="2"><center>{!! Form::submit('Sign Up', ['class' => 'btn btn-raised btn-info']) !!}</center></td>
+</tr>
+</table> 
 {!! Form::close() !!}
 <!-- end form -->
 </div>

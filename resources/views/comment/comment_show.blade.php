@@ -10,6 +10,13 @@
 
  <table class="table table-striped table-hover">
     <tr>
+    <td>
+    <a class="btn-floating orange" href="export/{{$list_article->id}}">Export 2</a>
+    <a href="{{ URL::to('export/'.$list_article->id) }}">Export</a>
+    </td>
+    </tr>
+
+    <tr>
     	<td>Article ID</td><td>{{ $list_article->id }}</td>
     </tr>
     <tr>
@@ -77,7 +84,7 @@
     	<!-- <img class="circle" src="{{ asset('/image_upload/'.$list_article->image) }}"  alt="icon"> -->
     </div>
     <div class="row-content">
-      <h4 class="list-group-item-heading">{{ $list->user_id }}</h4>
+      <h4 class="list-group-item-heading">{{ $list->user->email }}</h4>
     	<p class="list-group-item-text">{{ $list->content }}</p>
     </div>
   </div>

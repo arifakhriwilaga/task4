@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_login')
 
 @section('content')
 <div class="row">
@@ -9,21 +9,23 @@
 <div class="well">
 <!-- Open form -->
 {!! Form::open(['route' => 'logged_in']) !!}
-<!-- Input email -->
 {{ csrf_field() }}
-<!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-<!-- {!! Form::hidden('_token',$value = csrf_token())  !!} -->
-
-{!! Form::label('email', 'Email') !!}
+<h2><center>Welcome to my blog</center></h2>
+<br>
+<!-- Input email -->
+  <div>@if(Session::has('notice'))
+    <span>{{Session::get('notice')}}</span>
+  @endif
+  </div>
+{!! Form::label('email', 'E-Mail Address') !!}
 {!! Form::text('email') !!}
 {!! $errors->first('email') !!}
-<br>
 <!-- Input password -->
-{!! Form::label('password', 'Password') !!}
+{!! Form::label('email', 'Your Password') !!}
 {!! Form::password('password') !!}
-{!! $errors->first('password') !!} 
-<br>
-{!! Form::submit('Login') !!} {!! link_to('user/forgot-password ', 'Forgot your password?') !!} 
+{!! $errors->first('password') !!}
+<center>{!! Form::submit('Login', ['class' => 'btn btn-raised btn-info']) !!}</center> 
+<center>{!! link_to('reset-password', 'Forgot your password?') !!}</center> 
 {!! Form::close() !!}
 <!-- close -->
 </div>

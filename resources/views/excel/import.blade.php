@@ -13,8 +13,8 @@
 <!-- open form for import -->
 {!! Form::open(['route' => 'import_store', 'enctype' => 'multipart/form-data']) !!}
 <h2>Import</h2>
-{!! Form::file('import_file',null) !!}
-{!! $errors->first('image') !!} 
+{!! Form::file('import_file') !!}
+{!! $errors->first('import_file') !!} 
 
 <br><br><br>
 {!! Form::submit('Save') !!}

@@ -16,8 +16,7 @@ class Article extends Model
 	return $this->hasMany('App\Comment', 'article_id');
 	}
 
-     public function user() {
-
+    public function user() {
 	return $this->belongsTo('App\User', 'user_id');
 	}
 }

@@ -7,8 +7,7 @@
 <div class="container">
 <div class="col-xs-6">
 <div class="well">
-
- <table class="table table-striped table-hover">
+ <table class="table table-striped table-hover">  
     <tr>
     	<td>Article ID</td><td>{{ $list_article->article_id }}</td>
     </tr>

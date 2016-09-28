@@ -1,49 +1,40 @@
-@extends('index')
 
-@section('content_image')
 @if($list_article->count())
-@if($user = Sentinel::inRole('admin'))
-<div>
-<a class="btn-floating green" href="import">
-    Import
-</a>
-<br>
-<a class="btn-floating green" href="{{ URL::to('export/xls') }}">
-    <button class="btn btn-success">Export</button>
-</a>
-</div>
-@endif
-  <table class="striped">
+
+    <table class="table table-striped table-hover ">
+      <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Title Image</th>
-      <th>Description Image</th>
-      <th>Image</th>
-        <th colspan="2">Action</th>
+      <th class="text-center"><a id="id">ID<i id="ic-direction"></i></a></th>
+      <th class="text-center">Title Image</th>
+      <th class="text-center">User Description</th>
+      <th class="text-center">Image</th>
+      <th class="text-center">Comment</th>
     </tr>
+  </thead>
     @foreach ($list_article as $list)
+  <tbody>
     <tr>
-      <td>{{ $list->id }}</td>
-      <td>{{ $list->name }}</td>
-      <td>{{ $list->title_image }}</td>
-      <td>{{ $list->description_image }}</td>
-      <td><img src="{{ asset('/image_upload/thumb'.$list->image) }}" width="200px" height="100px"></td>
-      @if($user = Sentinel::check())
+      <td><center>{{ $list->id }}</center></td>
+      <td><center>{{ $list->title_image }}</center></td>
+      <td><center>{{ $list->description_image }}</center></td>
+      <td><center><img src="{{ asset('/image_upload/thumb'.$list->image) }}" width="228px" height="120px"></center></td>
       <td>
-        <a class="btn-floating green" href="comment-show/{{$list->id}}">
-            Comment
-        </a>
+      <center>
+        @if($user = Sentinel::check())
+          <a href="comment-show/{{$list->id}}">
+            <button type="button" class="btn btn-raised btn-sm btn-default">
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            </button>
+          </a>
+        @endif
+      </center>
       </td>
-      @endif
     </tr>
-    @endforeach
+  </tbody>
+  @endforeach
   </table>
-  <!-- PAGINATION -->
-  {!! $list_article->render() !!}
-  @else
+@else
     <div class="alert alert-warning">
       <i class="fa fa-exclamation-triangle"></i> Empty image for you look
     </div>
 @endif
-@stop

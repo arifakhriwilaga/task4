@@ -6,17 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
               <!--Import jQuery before materialize.js-->
         <title>Laravel</title>
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
         <!--Link Material Design Icon -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-      <link type="text/css" rel="stylesheet" href="/assets/css/bootstrap.css">
-        <!-- Bootstrap Material Design -->
-      <link type="text/css" rel="stylesheet" href="/assets/libraries/bootstrap_material/css/bootstrap-material-design.css">
-      <link type="text/css" rel="stylesheet" href="/assets/libraries/bootstrap_material/css/ripples.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="/assets/css/bootstrap.css">
+          <!-- Bootstrap Material Design -->
+        <link type="text/css" rel="stylesheet" href="/assets/libraries/bootstrap_material/css/bootstrap-material-design.css">
+        <link type="text/css" rel="stylesheet" href="/assets/libraries/bootstrap_material/css/ripples.css">
        <!-- Styles -->
-        <style>
-        .grid-item { width: 200px; }
-        .grid-item--width2 { width: 400px; }
+        <style>   
+          .grid-item { width: 200px; }
+          .grid-item--width2 { width: 400px; }
         </style>
     </head>
     <body>
@@ -25,62 +27,56 @@
     <script type="text/javascript" src="/assets/libraries/masonry/masonry.js"></script>
     <script type="text/javascript" src="/assets/libraries/bootstrap_material/js/material.js"></script>
     <script type="text/javascript" src="/assets/libraries/bootstrap_material/js/ripples.js"></script>
-    <script>
-  
-      // $(window).on('hashchange', function() {
-      //     if (window.location.hash) {
-      //         var page = window.location.hash.replace('#', '');
-      //         if (page == Number.NaN || page <= 0) {
-      //             return false;
-      //         }else{
-      //             getData(page);
-      //         }
-      //     }
-      // });
+    <script>   
 
-            // var myurl = $(this).attr('href');
-    $(document).ready(function()
-    {
-        $(document).on('click', '.pagination a',function(event)
-        {
-          $('li').removeClass('active');
-          $(this).parent('li').addClass('active');
-          event.preventDefault();
-          var page= $(this).attr('href').split('page=')[1];
-          getData(page);
+      $(document).ready(function() {
+
+        $(document).on('click', '.pagination a', function(e) {
+          get_page($(this).attr('href').split('page=')[1]);
+          e.preventDefault();
         });
 
         $.material.init();
-    });
-    function getData(page){
-            $.ajax(
-            {
-                url: '?page=' + page,
-                type: "get",
-                datatype: "html",
-                
-            })
-            .done(function(data)
-            {
-                console.log(data);
-                
-                $("#image_container").empty().html(data);
-                location.hash = page;
-            })
-            .fail(function(jqXHR, ajaxOptions, thrownError)
-            {
-                  alert('No response from server');
-            });
-    }
+ 
+        function get_page(page) {
+          $.ajax({
+            url : '/home?page=' + page,
+            type : ‘GET’,
+            dataType : 'json',
+            success : function(data) {
+              $('#list').html(data['page']);
+            },
+            error : function(xhr, status, error) {
+              console.log(xhr.error + "\n ERROR STATUS : " + status + "\n" + error);
+            },
+            complete : function() {
+              alreadyloading = false;
+            }
+          });
+        }   
 
-    function search_data(search_value) {
-      $.ajax({
-          url: '/search-data/' + 'title_image',
-          method: 'GET'
-      }).done(function(response){
-          $('#image_container').html(response);
+        $('#search').on('click', function(){
+          $.ajax({
+            url : '/home',
+            type : 'GET',
+            dataType : 'json',
+            data : {
+              'keywords' : $('#keywords').val()
+            },
+            success : function(data) {
+              $('#list').html(data);
+            },
+            error : function(xhr, status) {
+              console.log(xhr.error + " ERROR STATUS : " + status);
+            },
+            complete : function() {
+              alreadyloading = false;
+            }
+          });
+        });
+      
       });
-    }
+
   </script>
 
     <!-- Navbar -->
@@ -89,7 +85,6 @@
      @include('shared.header')
      </div>
      </div>
-
      <!-- Content -->
      <div class="row">
       @yield('content')

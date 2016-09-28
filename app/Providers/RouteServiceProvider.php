@@ -60,6 +60,8 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/comment/comment_routes.php');
             require base_path('routes/excel/excel_routes.php');
             require base_path('routes/authentication/authentication_routes.php');
+            require base_path('routes/forgot_password/forgot_password_routes.php');
+
         });
     }
 

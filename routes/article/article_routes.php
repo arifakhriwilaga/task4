@@ -8,11 +8,11 @@ Route::get('article-show/{articles}','ArticlesController@show')->name('article_s
 Route::get('article-edit/{articles}','ArticlesController@edit')->name('article_edit');
 Route::put('article-update/{articles}','ArticlesController@update')->name('article_update');
 Route::post('article-store','ArticlesController@store')->name('article_store');
-Route::get('index','AuthenticationsController@index')->name('index');
+Route::get('home','AuthenticationsController@home')->name('home');
 
 });
 Route::group(['middleware' => 'auth'], function(){
 Route::post('comment-store','CommentsController@store')->name('comment_store');
-Route::get('index','AuthenticationsController@index')->name('index');
+Route::get('home','AuthenticationsController@home')->name('home');
 });
 ?>

@@ -1,6 +1,18 @@
 @extends('layouts.layout')
 
 @section('content')
+@if($user = Sentinel::inRole('admin'))
+<div class="col-xs-5">
+  <div class="btn-group">
+    <a href="#" class="btn btn-default btn-raised">Excel</a>
+    <a href="#" data-target="dropdown-menu" class="btn btn-default btn-raised dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ URL::to('import') }}">Import</a></li>
+      <li><a href="{{ URL::to('export/xls') }}">Export</a></li>
+    </ul>
+  </div>
+@endif
+<!--  -->
 <br>
 <div class="col-xs-2">
 </div>

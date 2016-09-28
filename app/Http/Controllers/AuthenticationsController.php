@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use Cartalyst\Sentinel\Activations\EloquentActivation;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-
-
-use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests;
 use App\User;
 use App\Article;
 
-use Redirect,Session;
+use Redirect,Session,Request;
 
 
 class AuthenticationsController extends Controller
@@ -29,16 +26,46 @@ class AuthenticationsController extends Controller
         /**
      return view to sign_up page or first page
      */
-    public function index(Request $request)
-    {
-        $articles = Article::paginate(1);
-  
-        if ($request->ajax()) {
-            return view('image.content_image')->with('list_article',$articles);
+
+      public function home(Request $request)
+
+      {
+
+        $articles = Article::paginate(2);//->toJson();
+
+        if ($request::ajax()) {
+
+            if($request->keywords) {
+            $articles = Article::where('title_image', 'like', '%'.$request->keywords.'%')
+              ->orWhere('description_image', 'like', '%'.$request->keywords.'%')
+              ->paginate(2);
+            }
+
+        $view = (String)view('image.content_image')
+        ->with('list_article', $articles)
+        ->render();
+         return response()->json(['page' => $view])->render();
+        
+        } else {
+        
+        $articles = Article::paginate(2);
+        return view('index')
+        ->with('list_article', $articles);
+        
         }
-            return view('image.content_image')->with('list_article',$articles);
-    
-    }
+
+        if($request->ajax()) {
+            $articles = Article::orderBy('id', $request->direction)->paginate(2);
+            $request->direction == 'asc' ? $direction = 'desc' : $direction = 'asc';
+            $view = (String)view('image.content_image')
+            ->with('list_article', $articles)
+            ->render();
+            return response()->json(['view' => $view, 'direction' => $direction]);
+        } else {
+            $articles = Article::orderBy('created_at', 'desc')->paginate(2);
+            return view('index')->with('list_article', $articles);
+        }
+      }
 
     /**
      return view to index of website
@@ -62,15 +89,6 @@ class AuthenticationsController extends Controller
     }
 
     /**
-     return view to index of website
-     */
-    public function forgot_password()
-    {
-        return view('authentication.forgot_password');
-    }
-
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -79,20 +97,18 @@ class AuthenticationsController extends Controller
     public function logged_in(Request $request)
     {
         $credentials = [
-            'username' => $request->email,
+            'username'  => $request->email,
             'email'    => $request->email,
             'password' => $request->password,
         ];
 
-        // $user = Sentinel::findUserById(1);
-        // Sentinel::check();
         if ($user = Sentinel::authenticate($credentials))
         {
             $articles = Article::all();
-            return redirect('index')->with('user',$credentials);         
+            return redirect('home')->with('user',$credentials);         
         }
         else{
-            Session::flash('error',' Failed login');
+            Session::flash('notice',' Failed login');
             return redirect('user/login');
         }
         
